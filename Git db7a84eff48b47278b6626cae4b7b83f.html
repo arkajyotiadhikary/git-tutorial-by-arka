@@ -1,0 +1,636 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Git</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="db7a84ef-f48b-4727-8b66-26cae4b7b83f" class="page mono"><header><img class="page-cover-image" src="https://c4.wallpaperflare.com/wallpaper/968/536/905/technology-git-hd-wallpaper-preview.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP0AAADHCAMAAADlCqUFAAAAkFBMVEX////+URr+Txb/SQD+UBT/8u7/ThL+d03+ckz/bDz+Wyj/7un/TAD+9fL//v/+6eL/+vj/r5j/qZX+xbX+0cX/Yiz/Vhv+p4/+VBH+vav+v67+oYj/UAr+3dL+moD+sJz+imr+tqP/5Nz+cUT+zcD+gF7/ZzX+18z+kHH+knX+noL+Zjz/fFb+g2L/YSr/XCMkq7LeAAAHBUlEQVR4nO2ae3eiPBDGIcG0lqBYFLzEC3h3bf3+3+7lkoSL2O57dNt4zvP7ZxeElCeTTGYmsSwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4B56v/0Bv0vncS11/Ie19TPEO74LHtGQP+lyOl7NH9HWTzHgDnHY5AEtLblj20SM+g9o64eYcTuF0PjulpKQZE3Z/Pg0nmTJi08mzt3WD5y8JZu9Ps6P/FsiKf5+6/esCZPq/+ih7ycpxk6EpRb/AOsHY6l+7apb813K1tR5MOB2CaH3yU8uRTv8oOd9QAlhL/d/5z8iElX5zvSuxo40G0mMl0telPauY6b6TRaYLGnN+nfJ96MR5+I8VNc964WZqn7CZ9k/s9rgt+8Le/r7YVJx+PNsDTRS/VIQmst/p3bF9fGHRH2SYzavTFQ/FSQNy6L0f/5M2I7QC1/4OPkxI2aqj3O5hObyh/PhwtHy2WPk+/NT7gRtsk76Sb/fT9zvX/oZpsrWufUzJtr7kXDz9cu+u5nGg+V03/EVXno3HigmvtWZfYz0ctLNGc3+uay/oxiShZdfyntHpj7Wcb6SP5+tOS0YjySf3cRyQ6r407GSsag4kxy6+Alp3xNUvkwoi2zG5ddebsr3ZhfqNGQR4ozm1vyiGs3ifBX5VDBE/YSV4m2hovthWN50bg3+/islV7LSXkjVb3Sn5OrDq+fMUB9UxdtCfVNQjfqcy7DtVW+rggPG9EQhjNHL3ApCrrKc3PZhqDsgzBEmqJ86NauQXVLc947VqM8J2+QvC/GEXs4f588iQyJ/tqvFu5v6+OWaafX+cLifFqOJrIf7YUbyozpbqVs++9atDM68Q03+27X8zigf3SQ8uZ7vuVFuXLbyVSkveSNKfYZbXBq03gfkaj6Kbvqx2Vrs161/PfiD4nc6kNeD/LpcITrdivqe1TdN/aZp+cyUn6n092zh81Y1+aN94+2TKOaKiuQ7O2l8dd2t2d409YHd4rEL9Xlu7x8oK92C81aT37NWuXp2UGr9VT7RL7o3jFa/cZxr8Up9XtnxDtuPPzoaaFp/m4sVJ3Xt51mMLZQ7M1p9ELaJV+ptLnN7N9LTw/ms1uZ7Uv1R3fA/8hu6mmGy+qRdvFZfVnZOOuV3dtWS5KGY911PtViEd2P1jMnqF7xNe6nedmyZhbll0EtPlRZkHYjKzMjbFj5/p3rDYPVymH6hnqylO/PX2vOxc6WJvozenNWw03Gnr0WDXMdwBqu3jt/Znmn1XT1HxKrahJoSjI8vQmY7JNSu0WT1c9Gy3NVsf5HuKylDflELedy1/kW3xcu03WT1zQj/Sr2KW8o5Qnhjfyfp0sbL9FBuWRutvpbXt6lPx/nc8+aleLFsNuHVvAfhb4PKfv0N9esfE/g1k5ZAt6reZuP1elxa/kq8tc8EMk4555TyXVTL29rVk50pBxqmLdavqk8tpR9osby1yWIGsUqCZRTF06Qhq6HeHRVtUWOOM8TX8smlqr4yqgdXbw8v2fGE8Fai3lDv7Yq/xc5pN/n94BEHJO7k2vpilUYrk3HjNhHX4pPPbJFjJ9ftdDz/ejy7NfU960UunE64flm/iYsBM6BpfbrIP2pSjwYIvRZvHYpnwstu/bJdHReDyWaui/TuZrqQxZy32XSTdcBMDSjiOKnHoc2M+TeY1OQ7LzI/PdZCwRbLW+5O18EJY4xSIcbh6BwXHRBzoXwqEWOeDfNGaZMbUdBfVuXr7YxKRTud81HLe/1Ri8skjBYHvuLa4CmOAkTVCjChZpxomVRObIhYHjUYlhV4ItrEW/65WvYtYXlVvE29FV2orHRSp3s0xPcPSvl6NyPQtpd7u9fsm65RvZCtGjEfV1DHQOazl3AsxpdzFJhzfCcuDyvJDN7flhHezfk5f2uXn2n1vSrlkc2e77meb9bRnfKsFv3I0/NI++daSl/nlL0kQpFt1qXRnt7RMGKj4v9QntZiu9l0UCZvty1f9BCPvX6y3wTxYHZ4lZFhPQ9+Bqon9Xi5M8kXN2OSfLOCvVR+9+SZr+dTr7al6vDbw77w6vRdX6dzuV9U9p5u5FuN80rfWl4+XwrNHNlGVvruO+n2Owya8r+2YdFb4t1VBTA3kDnspxFhzP/lVJfPj1/mITIV4LtVtIyXy+iwlkFjSzb4FERV+eU2RTuuLHYSxjOECpi/6TSDqRT5+cH75uGAtxTFGT1+9565aOt/Z/mM/VnU82NHjM+tpzyeBF9an6/+xoKd4PApA7384NZuMXxew+fkrpwf/vp5d5/GeVE0iKfzp3T1dfxZasbFk5vwDjp7Yw6RAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMj5D9c7cX+cnW9eAAAAAElFTkSuQmCC"/></div><h1 class="page-title">Git</h1></header><div class="page-body"><p id="53e7842c-358f-4b2e-8398-c8f158ab95bb" class="">S.C.M. → Source Control Management.</p><h2 id="eaf3d79e-ed3f-43a7-9bda-b620b251a1aa" class=""><mark class="highlight-pink"><strong>Some Import Things</strong></mark></h2><p id="482e94c9-3b82-460b-9d1d-0b68cdf69a1b" class=""><mark class="highlight-orange"><strong>Head</strong></mark>[Bookmark]<strong> ⇒ </strong>Git Uses the Head alias to represent the currently checked out snapshot of your project.</p><p id="51d13a90-06b0-47b5-b51a-731ead943e7a" class=""><mark class="highlight-blue"><strong>.gitignore</strong></mark> ⇒ the files we want to ignore by git put here</p><p id="0a821cc4-5bc0-4cc6-870a-9ea49497a3a8" class=""><mark class="highlight-gray"><strong>Commit ID</strong></mark> ⇒ The id used to tracked commits / Generated by Hash function using Sha1.</p><p id="18295d2d-eb1b-417d-af0d-4080e5228f99" class=""><mark class="highlight-brown"><strong>Branch ⇒ </strong></mark>a pointer to a particular commit(Independent line of development in a project/Latest    link to a chain of development history)[Default Branch <strong>MASTER</strong>].</p><p id="2e1f01b6-163a-4b40-b890-89187b9df8a8" class=""><mark class="highlight-orange"><strong>Merge</strong></mark> ⇒ Git Uses two different algorithms to perform a merge: <strong>Fast Forward Merge </strong>and <strong>Three-Way      Merge.</strong><div class="indented"><p id="72a669db-36b1-4d06-8077-6abcb4831074" class=""><mark class="highlight-yellow"><strong>Fast Forward Merge</strong></mark>  → All the commits in the checkout branch are also in a branch that being merged. </p><p id="9a033eb5-bd59-4c09-8b82-90cb0a5c3ce9" class=""><mark class="highlight-yellow"><strong>Three_Way Merged</strong></mark> → when the history of the merging branch has diverged in some way and there is not a linear path combine them the fast forwarding. </p></div></p><p id="674b0a42-ec8d-459f-9568-b4c941e424b6" class=""><mark class="highlight-teal"><strong>Credential helper</strong></mark> ⇒ save your password and username for 15min so that we don&#x27;t have put our password and username every time. [Enable it by <mark class="highlight-teal"><strong>git config —global credential.helper cache</strong></mark>] </p><p id="23ef2280-c7d8-4d66-8e85-7b1590b7fea3" class="">
+</p><p id="f398be14-f515-4118-80be-48983422e723" class="">
+</p><h2 id="775ee957-98fb-4e97-83bf-336127c63633" class=""><mark class="highlight-red">Important Commands</mark></h2><p id="8ae66f13-d6d0-4a7c-8b64-a340fa1dd694" class="">
+</p><h3 id="2722864f-6842-4c6e-84a9-91209da1c36e" class="">Work in Git Locally</h3><p id="f96daf19-45b6-4188-979e-933e908a0bec" class="">
+</p><ul id="10cf9b13-b934-42d9-af46-bb046a7250c0" class="bulleted-list"><li><strong>Tell git who we are</strong> → <mark class="highlight-blue"><strong>git config —global user.mail</strong></mark><p id="053f1e2f-b4c4-4744-8c99-bc983df806b6" class="">                      <mark class="highlight-blue"><strong>git config —global user.name</strong></mark><div class="indented"><p id="187ae18b-c9ca-4eef-b6b4-9f427ad6be21" class="">                    <mark class="highlight-blue"><strong>git config -l</strong></mark><strong> (To check the config)</strong></p><hr id="16da2b1f-b997-4c7a-9fc6-6d5df91b2174"/></div></p></li></ul><ul id="fbfbf2f8-38f1-4cb8-8dbc-88e049521df3" class="bulleted-list"><li><strong>Start working with git</strong> → <mark class="highlight-teal"><strong>git init</strong></mark> (make a repository)<p id="02c6e302-5c3f-4a85-8002-9d360c21d2b5" class="">                         <mark class="highlight-teal"><strong>git clone</strong></mark> (copy a repository)</p><hr id="ebe72a92-c998-4bb9-9272-ed669c3b5c25"/></li></ul><ul id="9d89f5b0-333d-453b-b7fc-c48dd8e51382" class="bulleted-list"><li><strong>Staging area</strong> → A file maintained by git that contains all of the information about what files and going to go into your next commit. (<mark class="highlight-purple"><strong>git add</strong></mark>)<hr id="0e721fbb-ba6c-40cb-954a-950f1385c313"/></li></ul><ul id="fd85a10c-bad2-42e5-8785-ad1f4354cf1a" class="bulleted-list"><li><strong>Status → </strong><mark class="highlight-yellow"><strong>git status</strong></mark><hr id="24faada8-bb87-4f99-9b12-b13c70bf2aa3"/></li></ul><ul id="13676262-a059-4881-9994-46291ffc7502" class="bulleted-list"><li><strong>Commit → </strong><mark class="highlight-pink"><strong>git commit /git commit -m</strong></mark><strong> (&quot;comment for the commit&quot;).</strong><p id="15b2e7b7-4c0e-4a2c-9950-260d68087ea9" class="">[<strong>what make a good commit msg → </strong>a short description of the change,followed by one or more paragraph giving more details of the change]</p><hr id="18613083-dbc0-4696-8af8-7c5805e3a669"/></li></ul><ul id="f965d891-0b34-4a8b-9664-bcd3f2ec826e" class="bulleted-list"><li><strong>Add Commit Without Staging stage → </strong><mark class="highlight-orange"><strong>git commit -a </strong></mark><p id="5372f1cf-5d3b-4b99-a1c3-3f30be20a74c" class="">[Not work with untracked files. It works only with modified files.]</p><hr id="b55c2903-9bfc-496f-b8b0-7ee4ca11c097"/></li></ul><ul id="e61bd980-b2ac-49d9-a263-94934c0af778" class="bulleted-list"><li><strong>Add files in the same commit → </strong><mark class="highlight-pink"><strong>git commit —amend</strong></mark><hr id="92e084b2-2bb2-4a98-b6ec-b1be2eab5771"/></li></ul><ul id="f29348a2-dbfc-4cfc-8e04-e108b9a94041" class="bulleted-list"><li><strong>Log / Description about the commits → </strong><mark class="highlight-purple"><strong>git log</strong></mark><hr id="245a4f80-3508-4675-b3b1-5a8e5d09c438"/></li></ul><ul id="895bd183-d47f-49ad-a921-d38b288c536e" class="bulleted-list"><li><strong>Check out the changes made in our file → </strong><mark class="highlight-orange"><strong>git log -p</strong></mark><strong> </strong>or git show &quot;Commit ID&quot;<strong> </strong><hr id="3fc04fee-a684-4257-8ec5-4e5b39d1a083"/></li></ul><ul id="c1d4d07d-0a5a-4294-afd5-2732ebb79dea" class="bulleted-list"><li><strong>Check log as graph → </strong><mark class="highlight-pink"><strong>git graph oneline</strong></mark><hr id="0d3eccfb-5c08-42b0-8541-40b0e8c3e86a"/></li></ul><ul id="4a3197fa-a4c8-457f-b3c7-3a71620af87c" class="bulleted-list"><li><strong>To check changes in a file without committing → </strong><mark class="highlight-pink"><strong>git diff</strong></mark><strong> </strong>or <mark class="highlight-pink"><strong>git add -p</strong></mark><strong> </strong><p id="518b9239-b6b3-4a27-92bf-4aa5620c541d" class="">[<mark class="highlight-pink"><strong>diff —staged</strong></mark> → to check the changes of a file which is staged but not committed]</p><hr id="ed7acd0b-33ce-49a0-b270-29938646073a"/></li></ul><ul id="3f7c450d-c61b-475a-94c8-a511044ff8a2" class="bulleted-list"><li><strong>Delete files from git</strong> → <mark class="highlight-teal"><strong>git rm </strong></mark><p id="a0237fb9-61f4-4353-9d43-8da6c52db3a6" class="">[Have to commit after deleting]</p><hr id="bee6fcae-66b8-4e18-9145-4b1651efbcdd"/></li></ul><ul id="08b3093c-13ee-42b2-8943-2b0e6664ab17" class="bulleted-list"><li><strong>Renaming and Moving files in Git → </strong><mark class="highlight-blue"><strong>git mv</strong></mark><p id="69482750-1918-4792-88a1-97f0ec79f558" class="">[Have to commit after]</p><hr id="e8b593d5-9969-4935-a763-d30305b25d91"/></li></ul><ul id="14dc2211-87a3-42d8-b57c-e033608f8260" class="bulleted-list"><li><strong>Revert your changes → </strong><p id="31918d71-cb32-424d-b235-c018ee3d7087" class=""><mark class="highlight-orange"><strong>git checkout</strong></mark><mark class="highlight-blue"><strong> </strong></mark>[revert everything/not in staging area]</p><p id="84867d10-c56b-44ae-b2ef-21ef681eacae" class=""><mark class="highlight-orange"><strong>git checkout -p</strong></mark><mark class="highlight-blue"><strong> </strong></mark>[revert the file line by line]               <div class="indented"><hr id="27bd077f-4694-49e4-b428-009ec949ec96"/></div></p></li></ul><ul id="8a90ac45-1073-457c-8333-ab25ae2b68c2" class="bulleted-list"><li><strong>Remove files from staging area</strong> → <mark class="highlight-pink"><strong>git reset</strong></mark><mark class="highlight-blue"><strong> </strong></mark>[if the file is in staging area it revert]<hr id="a14dcfb7-b6d0-41c4-ae23-8d8f32ba129f"/></li></ul><ul id="1bb918bb-3fc1-457d-88bf-e440906d3698" class="bulleted-list"><li><strong>Revert files from Commit → </strong><mark class="highlight-gray"><strong>git revert HEAD </strong></mark><strong>[</strong>if the file is committed<strong>]</strong><p id="2c475bb9-593d-44a4-929f-f0255ab118c7" class="">[We can revert old files by using Commit ID <mark class="highlight-gray"><strong>git revert &quot;Commit ID&quot;</strong></mark>]</p><hr id="ef7c1484-e4c6-4735-8868-e83512446337"/></li></ul><p id="e65cbe91-3584-4ca7-bd2b-42778730ef1b" class="">
+</p><h3 id="9ecf3b16-dc10-4f89-85a4-7bbf67c082d6" class="">Branch &gt; &quot;Working with branch&quot;</h3><p id="6bd832bf-95f1-475c-9a47-4dcf129c1940" class="">
+</p><ul id="a21cc5cc-0ea6-4418-b9a8-34ad18ba8ccb" class="bulleted-list"><li><strong>Checking in which branch are we/list of branches → </strong><mark class="highlight-brown"><strong>git branch</strong></mark><hr id="b0e87fa2-535d-42e4-9860-c26f48719540"/></li></ul><ul id="b2e5814f-5ae1-4dcb-a30a-d0fddd8cf2c6" class="bulleted-list"><li><strong>Creating new Branch → </strong><mark class="highlight-orange"><strong>git branch &quot;new branch name&quot;</strong></mark><hr id="e3b44399-cb3f-40b1-afc3-ec04eef1099c"/></li></ul><ul id="b4b02020-ba49-4dcd-9fa1-2dacdf754c73" class="bulleted-list"><li><strong>Move to branches → git checkout &quot;branch name&quot;</strong><hr id="db556580-cd05-4b75-82f4-04156e687fa3"/></li></ul><ul id="96ce22b2-3953-447f-b327-07a9ae49d100" class="bulleted-list"><li><strong>Creating new branch and at the same time move to the branch also → </strong><mark class="highlight-yellow"><strong>git checkout -b &quot;new branch&quot;</strong></mark><hr id="1dba4225-30e4-426a-85f4-abc6697499fd"/></li></ul><ul id="7bc5539c-8eb8-4d5d-be15-0e03459fbbbb" class="bulleted-list"><li><strong>Delete branch → </strong><mark class="highlight-teal"><strong>git branch -d &quot;branch name&quot;</strong></mark><hr id="a9b6aadc-9e5d-4083-928e-d35ce788289f"/></li></ul><ul id="26197dd7-cb9e-4bcc-b3cf-5183695b5f92" class="bulleted-list"><li><strong>Merging branches → </strong><mark class="highlight-blue"><strong>git merge &quot;branch name&quot;</strong></mark><strong> [</strong>have to be in the main branch where we want to merge]<hr id="1d45d7d1-ca66-4500-919a-070253af90ef"/></li></ul><ul id="c2390448-c892-467a-91cc-735c648aee82" class="bulleted-list"><li><strong>Merge Conflict → if the two branch has same file but a slight differences in commit.</strong></li></ul><p id="1d108532-5ac5-47cc-9aba-8e04ac80fb9d" class="">   [We have to use editor to fix it]</p><hr id="0e412db5-62a1-4c81-80e1-9ac604692441"/><ul id="b1e90eb3-179a-4d1f-83fb-3f65b72ad6b1" class="bulleted-list"><li><strong>to abort a merge → </strong><mark class="highlight-purple"><strong>git merge —abort</strong></mark><hr id="8dc181b2-60b1-4baa-9e39-a0d30045884d"/></li></ul><p id="31a19d76-c010-4499-8855-421f207fa244" class="">
+</p><h3 id="81e9daca-2848-4293-9d29-411eef058cf1" class=""><strong>Working Git Remotely:</strong></h3><p id="5b64d46f-5c06-46b9-84dc-05c1c3cff76a" class="">
+</p><ul id="d3571edc-3c41-4816-b2a7-a99794e62c9d" class="bulleted-list"><li><strong>Details about the remote → </strong><mark class="highlight-red"><strong>git -remote -v/ git remote show origin</strong></mark><hr id="9fba3cd7-2f37-4c8e-87b0-22a4ec1205dd"/></li></ul><ul id="f370820b-7144-4e3b-96ca-751b5b9119ec" class="bulleted-list"><li><strong>push commit in GitHub → </strong><mark class="highlight-gray"><strong>git push</strong></mark><hr id="2b180f7d-be0c-4e13-a63d-4adf17b677ed"/></li></ul><ul id="351ae76d-6c83-471c-9266-f1b16f4fa8c8" class="bulleted-list"><li><strong>Accessing new updates/commits from GitHub → </strong><mark class="highlight-brown"><strong>git pull</strong></mark><hr id="b276ca8f-c1e5-4082-8d0c-4f1c53af129d"/></li></ul><ul id="2f09806c-b83e-4a2b-9d2e-843d4db708a6" class="bulleted-list"><li><strong>Update our branch to latest changes in remote → </strong><mark class="highlight-orange"><strong>git fetch</strong></mark></li></ul><hr id="404e91a1-58f5-4c67-9997-c527161409aa"/><ul id="471d2952-2ca9-4d63-8318-75a5657bd0ac" class="bulleted-list"><li><strong>List remote branches → </strong><mark class="highlight-yellow"><strong>git branch -r</strong></mark></li></ul><hr id="0b92f0c7-893a-4797-bcf1-1920fc935053"/><ul id="4bb243e6-7b7b-4626-9cdf-835ab3af1753" class="bulleted-list"><li><strong>fetches most up-to-date objects. → </strong><mark class="highlight-teal"><strong>git remote update</strong></mark></li></ul><p id="bb8930e3-df47-452e-b727-e5f3525cf897" class="">
+</p></div></article></body></html>
